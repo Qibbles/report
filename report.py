@@ -95,6 +95,24 @@ netQCashSpendingEntry = tk.Entry(input, width=20, textvariable=netQCashSpendingV
 #Buttons
 
 #Date Picker
+dayVar = tk.StringVar(input)
+dayNo = []
+for day in range(31):
+    dayNo.append(day+1)
+dayOption = tk.OptionMenu(input, dayVar, *dayNo).grid(row=date, column=entry)
+
+monthVar = tk.StringVar(input)
+month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+monthOption = tk.OptionMenu(input, monthVar, *month).grid(row=date, column=entry+1)
+
+yearVar = tk.StringVar(input)
+currentYear = 2019
+yearNo = []
+for year in range(10): #Add +- 10 years to menu
+    yearNo.append(currentYear+year+1)
+    yearNo.insert(0,currentYear-year)
+yearOption = tk.OptionMenu(input, yearVar, *yearNo).grid(row=date, column=entry+2)
+
 
 ##################
 ### Report tab ###
