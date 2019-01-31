@@ -5,6 +5,12 @@ import numpy as np
 import datetime
 # import matplotlib.pyplot as plt
 
+#Class and functions
+def udateDay:
+    pass
+    # get() chosen dates
+    # dayVar.set(today.strftime("%A"))
+
 win = tk.Tk()
 win.title("Seller Marketing Report Generator")
 win.geometry('500x500')
@@ -61,6 +67,8 @@ QCashLbl = ttk.Label(input, text="No. QCash Sellers").grid(column=label, row=fea
 netQCashSpendingLbl = ttk.Label(input, text="Net QCash Spending").grid(column=label, row=feature['netQCashSpending'])
 
 #Entry boxes
+today = datetime.datetime.today()
+
 dayVar = tk.StringVar()
 dayEntry = tk.Entry(input, width=20, textvariable=dayVar)
 dayEntry.grid(column=entry, row=feature['day'], columnspan=5)
@@ -94,20 +102,20 @@ netQCashSpendingEntry = tk.Entry(input, width=20, textvariable=netQCashSpendingV
 #Buttons
 
 #Date Picker
-today = datetime.datetime.now()
-
-dayVar = tk.StringVar(input)
-dayNo = []
-for day in range(31):
-    dayNo.append(day+1)
-dayOption = tk.OptionMenu(input, dayVar, *dayNo).grid(row=feature['date'], column=entry)
-dayVar.set(today.day)
+dateVar = tk.StringVar(input)
+dateNo = []
+for date in range(31):
+    dateNo.append(date+1)
+dateOption = tk.OptionMenu(input, dateVar, *dateNo).grid(row=feature['date'], column=entry)
+dateVar.set(today.day)
+dateVar.trace("w", updateDay)
 
 monthVar = tk.StringVar(input)
 currentMonth = today.strftime("%b")
 month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 monthOption = tk.OptionMenu(input, monthVar, *month).grid(row=feature['date'], column=entry+1)
 monthVar.set(currentMonth)
+monthVar.trace("w", updateDay)
 
 yearVar = tk.StringVar(input)
 currentYear = today.year
@@ -117,6 +125,7 @@ for year in range(10): #Add +- 10 years to menu
     yearNo.insert(0,currentYear-year)
 yearOption = tk.OptionMenu(input, yearVar, *yearNo).grid(row=feature['date'], column=entry+2)
 yearVar.set(currentYear)
+yearVar.trace("w", updateDay)
 
 
 ##################
