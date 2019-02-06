@@ -6,7 +6,7 @@ import datetime
 # import matplotlib.pyplot as plt
 
 #Class and functions
-def udateDay:
+def updateDay:
     pass
     # get() chosen dates
     # dayVar.set(today.strftime("%A"))
